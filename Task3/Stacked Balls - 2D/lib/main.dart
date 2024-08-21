@@ -7,10 +7,7 @@ double stackHeight(int layers) {
 
 void main() {
  
-  print(stackHeight(0)); 
-  print(stackHeight(1)); 
-  print(stackHeight(2)); 
-  print(stackHeight(3)); 
+  print(stackHeight(0));  
   print(stackHeight(5)); 
 
   //Used Some help from youtube to understand the assignment 
