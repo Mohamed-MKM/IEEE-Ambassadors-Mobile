@@ -13,7 +13,7 @@ int findQuadrant(int x, int y) {
 }
 
 void main() {
-  // Test cases
+ 
   print(findQuadrant(1, 2));     
   print(findQuadrant(3, 5));     
   print(findQuadrant(-10, 100)); 
