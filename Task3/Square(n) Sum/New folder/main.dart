@@ -1,11 +1,10 @@
-int squareSum(List<int> numbers) {
-  int sum = 0;
- 
-  for (int number in numbers) {
-    sum += number * number;
+int squareSum(List<int> nums) {
+int total = 0;
+  for (var num in nums) {
+    total += num * num;
   }
+  return total;
 
-  return sum;
 }
 
 void main() {

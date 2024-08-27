@@ -1,18 +1,18 @@
-String getMiddle(String word) {
+String middleCharIs(String word) {
   int length = word.length;
-  int middleIndex = length ~/ 2; 
+  int mid = length ~/ 2;
 
   if (length % 2 == 0) {
-    return word.substring(middleIndex - 1, middleIndex + 1);
+    return word.substring(mid - 1, mid + 1);
   } else {
-    return word[middleIndex];
+    return word[mid];
   }
 }
 
 void main() {
   
-  print(getMiddle("test"));    
-  print(getMiddle("testing"));
-  print(getMiddle("middle"));  
-  print(getMiddle("A"));       
+  print(middleCharIs("test"));    
+  print(middleCharIs("testing"));
+  print(middleCharIs("middle"));  
+  print(middleCharIs("A"));       
 }

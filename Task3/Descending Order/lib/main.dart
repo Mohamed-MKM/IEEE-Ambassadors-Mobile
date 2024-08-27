@@ -1,8 +1,18 @@
 int rearrange(int number) {
-  
-  List<String> digits = number.toString().split('');
-  digits.sort((a, b) => b.compareTo(a));
-  int result = int.parse(digits.join(''));
+
+  List<int> numList = [];
+
+  while (number > 0) {
+    numList.add(number % 10);
+    number = number ~/ 10;
+  }
+  numList.sort((a, b) => b.compareTo(a));
+
+  int result = 0;
+  for (int digit in numList) {
+    result = result * 10 + digit;
+  }
+
   return result;
 }
 
