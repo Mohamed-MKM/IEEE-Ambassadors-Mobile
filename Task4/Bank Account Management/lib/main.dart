@@ -1,65 +1,45 @@
-class BankAccount {
- 
-  String accountNumber;
-  String accountHolderName;
+class Account {
+  String id;
+  String holder;
   double balance;
 
-  
-  BankAccount({
-    required this.accountNumber,
-    required this.accountHolderName,
-    this.balance = 0.0,
-  });
+  Account(this.id, this.holder, this.balance);
 
-
-  void deposit(double amount) {
+  void addFunds(double amount) {
     if (amount > 0) {
       balance += amount;
-      print('Deposited \$${amount.toStringAsFixed(2)} into $accountHolderName\'s account.');
+      print('$holder has Deposited \$${amount.toStringAsFixed(2)} into account $id');
     } else {
-      print('Invalid deposit amount.');
+      print('$holder has Deposit amount must be positive');
     }
   }
 
-  
-  void withdraw(double amount) {
+  void withdrawFunds(double amount) {
     if (amount > 0 && amount <= balance) {
       balance -= amount;
-      print('Withdrew \$${amount.toStringAsFixed(2)} from $accountHolderName\'s account.');
+      print('$holder has Withdrew \$${amount.toStringAsFixed(2)} from account $id');
     } else if (amount > balance) {
-      print('Insufficient balance for withdrawal.');
+      print('The value is insufficient');
     } else {
-      print('Invalid withdrawal amount.');
+      print('Withdrawal succeed');
     }
   }
 
- 
-  void checkBalance() {
-    print('$accountHolderName\'s account balance: \$${balance.toStringAsFixed(2)}');
+  void displayBalance() {
+    print('Account $id (Holder: $holder) has a balance of \$${balance.toStringAsFixed(2)}');
   }
 }
 
 void main() {
-  
-  BankAccount account1 = BankAccount(
-    accountNumber: '123456789',
-    accountHolderName: 'Bob',
-    balance: 500.0,
-  );
+  Account mmkAccount = Account('EA241515', 'MOhamed MK', 1000.0);
+  Account aliAccount = Account('EA451552', 'Ali SH', 500.0);
 
-  BankAccount account2 = BankAccount(
-    accountNumber: '987654321',
-    accountHolderName: 'MMK',
-    balance: 1000.0,
-  );
+  mmkAccount.addFunds(200.0);
+  mmkAccount.withdrawFunds(150.0);
 
-  
-  account1.deposit(250.0);
-  account1.withdraw(100.0);
-  account1.checkBalance();
+  aliAccount.addFunds(100.0);
+  aliAccount.withdrawFunds(50.0);
 
-  account2.deposit(500.0);
-  account2.withdraw(1500.0); 
-  account2.withdraw(200.0);
-  account2.checkBalance();
+  mmkAccount.displayBalance();
+  aliAccount.displayBalance();
 }

@@ -1,74 +1,67 @@
 import 'dart:io';
 
+class Lap {
+  String brandName;
+  String modelName;
+  int ramSize; 
 
-class Laptop {
-  String brand;
-  String model;
-  int ram; 
-  double price;
+  Lap(this.brandName, this.modelName, this.ramSize);
 
-  
-  Laptop(this.brand, this.model, this.ram, this.price);
+  double computePrice() {
+    double baseCost = _determineBaseCost();
+    double ramCost = _calculateRamCost();
+    return baseCost + ramCost;
+  }
 
-  
-  void displayDetails() {
-    print('Laptop Brand: $brand');
-    print('Laptop Model: $model');
-    print('Laptop RAM: ${ram}GB');
-    print('Laptop Price: \$${price.toStringAsFixed(2)}');
+  double _determineBaseCost() {
+    switch (brandName.toLowerCase()) {
+      case 'apple':
+        return 1000.0;
+      case 'dell':
+        return 800.0;
+      case 'hp':
+        return 700.0;
+      case 'lenovo':
+        return 650.0;
+      case 'msi':
+        return 900.0;
+      default:
+        return 500.0;
+    }
+  }
+
+  double _calculateRamCost() {
+    if (ramSize <= 8) {
+      return 0.0;
+    } else if (ramSize <= 16) {
+      return 100.0;
+    } else {
+      return 200.0;
+    }
   }
 }
 
+class Shop {
+  void start() {
+    print('Welcome to the Tech Shop!');
 
-double calculatePrice(String brand, String model, int ram) {
-  double basePrice = 500;
+    stdout.write('Enter the laptop brand : ');
+    String brand = stdin.readLineSync()!;
 
-  
-  if (brand.toLowerCase() == 'apple') {
-    basePrice += 1000;
-  } else if (brand.toLowerCase() == 'dell') {
-    basePrice += 500;
-  } else if (brand.toLowerCase() == 'hp') {
-    basePrice += 400;
-  } else if (brand.toLowerCase() == 'lenovo') {
-    basePrice += 300;
-  } else {
-    basePrice += 200;
+    stdout.write('Enter the model : ');
+    String model = stdin.readLineSync()!;
+
+    stdout.write('Enter the size of RAM (in GB): ');
+    int ram = int.parse(stdin.readLineSync()!);
+
+    Lap lap = Lap(brand, model, ram);
+    double price = lap.computePrice();
+
+    print('The price of the ${lap.brandName} ${lap.modelName} with ${lap.ramSize}GB RAM is \$${price.toStringAsFixed(2)}');
   }
-
-
-  if (ram >= 16) {
-    basePrice += 300;
-  } else if (ram >= 8) {
-    basePrice += 150;
-  } else if (ram >= 4) {
-    basePrice += 50;
-  }
-
- 
-  if (model.toLowerCase().contains('pro')) {
-    basePrice += 500;
-  } else if (model.toLowerCase().contains('air')) {
-    basePrice += 300;
-  }
-
-  return basePrice;
 }
 
 void main() {
-  print('Enter laptop brand:');
-  String? brand = stdin.readLineSync();
-
-  print('Enter laptop model:');
-  String? model = stdin.readLineSync();
-
-  print('Enter laptop RAM (in GB):');
-  int? ram = int.parse(stdin.readLineSync()!);
-
-  double price = calculatePrice(brand!, model!, ram!);
-
-  Laptop laptop = Laptop(brand, model, ram, price);
-
-  print('\n--- Laptop Details ---');
-  laptop.displayDetails();
+  Shop shop = Shop();
+  shop.start();
 }

@@ -1,101 +1,54 @@
-class Employee {
+class Staff {
+  String id;
   String name;
-  String employeeId;
-  String department;
+  String jobTitle;
   double salary;
 
- 
-  Employee({
-    required this.name,
-    required this.employeeId,
-    required this.department,
-    required this.salary,
-  });
+  Staff(this.id, this.name, this.jobTitle, this.salary);
 
- 
-  void getDetails() {
+  void displayInfo() {
+    print('ID: $id');
     print('Name: $name');
-    print('Employee ID: $employeeId');
-    print('Department: $department');
+    print('Job Title: $jobTitle');
     print('Salary: \$${salary.toStringAsFixed(2)}');
   }
 }
 
 
-class Manager extends Employee {
-  int teamSize;
+class Manager extends Staff {
+  List<String> teamMembers;
 
-
-  Manager({
-    required String name,
-    required String employeeId,
-    required String department,
-    required double salary,
-    required this.teamSize,
-  }) : super(
-          name: name,
-          employeeId: employeeId,
-          department: department,
-          salary: salary,
-        );
-
+  Manager(String id, String name, String jobTitle, double salary, this.teamMembers)
+      : super(id, name, jobTitle, salary);
 
   @override
-  void getDetails() {
-    super.getDetails(); 
-    print('Team Size: $teamSize');
+  void displayInfo() {
+    super.displayInfo();
+    print('Team Members: ${teamMembers.join(', ')}');
   }
 }
 
+// Derived class for workers
+class Worker extends Staff {
+  String department;
 
-class Worker extends Employee {
-  String shift;
+  Worker(String id, String name, String jobTitle, double salary, this.department)
+      : super(id, name, jobTitle, salary);
 
-
-  Worker({
-    required String name,
-    required String employeeId,
-    required String department,
-    required double salary,
-    required this.shift,
-  }) : super(
-          name: name,
-          employeeId: employeeId,
-          department: department,
-          salary: salary,
-        );
-
- 
   @override
-  void getDetails() {
-    super.getDetails(); 
-    print('Shift: $shift');
+  void displayInfo() {
+    super.displayInfo();
+    print('Department: $department');
   }
 }
 
 void main() {
+  Manager manager = Manager('M001', 'Mohamed Mk', 'Project Manager', 100000.0, ['Ahmed', 'Hasan']);
+  Worker worker = Worker('W001', 'Ali Sh', 'Software Engineer', 50000.0, 'Engineering');
 
-  Manager manager = Manager(
-    name: 'MMK',
-    employeeId: 'M123',
-    department: 'Software Engineering',
-    salary: 95000.0,
-    teamSize: 10,
-  );
-
- 
-  Worker worker = Worker(
-    name: 'Bob',
-    employeeId: 'W456',
-    department: 'Production',
-    salary: 45000.0,
-    shift: 'Day',
-  );
-
- 
-  print('Manager Details:');
-  manager.getDetails();
+  print('Manager Info:');
+  manager.displayInfo();
   
-  print('\nWorker Details:');
-  worker.getDetails();
+  print('\nWorker Info:');
+  worker.displayInfo();
 }

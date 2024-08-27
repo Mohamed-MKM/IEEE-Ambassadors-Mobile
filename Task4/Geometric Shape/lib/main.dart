@@ -1,84 +1,73 @@
+import 'dart:math';
+
 abstract class Shape {
   double calculateArea();
   double calculatePerimeter();
 }
 
 class Rectangle extends Shape {
-  double length;
   double width;
+  double height;
 
-  Rectangle({required this.length, required this.width});
+  Rectangle(this.width, this.height);
 
   @override
   double calculateArea() {
-    return length * width;
+    return width * height;
   }
 
- 
   @override
   double calculatePerimeter() {
-    return 2 * (length + width);
+    return 2 * (width + height);
   }
 }
-
 
 class Circle extends Shape {
   double radius;
-  Circle({required this.radius});
+
+  Circle(this.radius);
 
   @override
   double calculateArea() {
-    return 3.14159 * radius * radius;
+    return 3.14 * radius * radius;
   }
-
 
   @override
   double calculatePerimeter() {
-    return 2 * 3.14159 * radius;
+    return 2 * 3.14 * radius;
   }
 }
 
-
 class Triangle extends Shape {
-  double base;
-  double height;
-  double sideA, sideB, sideC;
+  double a;
+  double b;
+  double c;
 
+  Triangle(this.a, this.b, this.c);
 
-  Triangle({
-    required this.base,
-    required this.height,
-    required this.sideA,
-    required this.sideB,
-    required this.sideC,
-  });
-
- 
   @override
   double calculateArea() {
-    return 0.5 * base * height;
+    double s = (a + b + c) / 2;
+    return sqrt(s * (s - a) * (s - b) * (s - c));
   }
 
   @override
   double calculatePerimeter() {
-    return sideA + sideB + sideC;
+    return a + b + c;
   }
 }
 
 void main() {
+  Shape rectangle = Rectangle(2.0, 3.0);
+  Shape circle = Circle(2.0);
+  Shape triangle = Triangle(3.0, 4.0, 5.0);
 
-  Rectangle rectangle = Rectangle(length: 5, width: 3);
-  Circle circle = Circle(radius: 4);
-  Triangle triangle = Triangle(base: 4, height: 3, sideA: 3, sideB: 4, sideC: 5);
+  print('Rectangle Area: ${rectangle.calculateArea()}');
+  print('Rectangle Perimeter: ${rectangle.calculatePerimeter()}');
 
+  print('Circle Area: ${circle.calculateArea()}');
+  print('Circle Perimeter: ${circle.calculatePerimeter()}');
 
-  List<Shape> shapes = [rectangle, circle, triangle];
-
-
-  for (Shape shape in shapes) {
-    print('Shape: ${shape.runtimeType}');
-    print('Area: ${shape.calculateArea()}');
-    print('Perimeter: ${shape.calculatePerimeter()}');
-    print('-------------------------');
-  }
+  print('Triangle Area: ${triangle.calculateArea()}');
+  print('Triangle Perimeter: ${triangle.calculatePerimeter()}');
 }
