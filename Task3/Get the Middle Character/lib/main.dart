@@ -1,4 +1,4 @@
-String middleCharIs(String word) {
+String getMiddle(String word) {
   int length = word.length;
   int mid = length ~/ 2;
 
@@ -9,10 +9,3 @@ String middleCharIs(String word) {
   }
 }
 
-void main() {
-  
-  print(middleCharIs("test"));    
-  print(middleCharIs("testing"));
-  print(middleCharIs("middle"));  
-  print(middleCharIs("A"));       
-}

@@ -1,4 +1,4 @@
-int rearrange(int number) {
+ int descendingOrder(int number) {
 
   List<int> numList = [];
 
@@ -16,8 +16,3 @@ int rearrange(int number) {
   return result;
 }
 
-void main() {
-  print(rearrange(42145));  
-  print(rearrange(145263));
-  print(rearrange(123456789));
-}

@@ -1,4 +1,4 @@
-int quadrantIs(int x, int y) {
+int quadrant(int x, int y) {
   if (x > 0 && y > 0) {
     return 1;  
   } else if (x < 0 && y > 0) {
@@ -14,9 +14,9 @@ int quadrantIs(int x, int y) {
 
 void main() {
  
-  print(quadrantIs(1, 2));     
-  print(quadrantIs(3, 5));     
-  print(quadrantIs(-10, 100)); 
-  print(quadrantIs(-1, -9));   
-  print(quadrantIs(19, -56));  
+  print(quadrant(1, 2));     
+  print(quadrant(3, 5));     
+  print(quadrant(-10, 100)); 
+  print(quadrant(-1, -9));   
+  print(quadrant(19, -56));  
 }

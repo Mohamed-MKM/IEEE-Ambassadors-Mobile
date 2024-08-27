@@ -6,7 +6,3 @@ int total = 0;
   return total;
 
 }
-
-void main() {
-  print(squareSum([1, 2, 2]));  
-}

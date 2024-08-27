@@ -1,9 +1,5 @@
 import 'dart:math';
-
-double height(int cells) {
-  return cells * (sqrt(3) / 2);
-}
-
-void main() {
-  print(height(5));
+double stackHeight2d(int cells) {
+  if (cells == 0) return 0.0; 
+  return (cells - 1) * (sqrt(3) / 2)+1.0;
 }
